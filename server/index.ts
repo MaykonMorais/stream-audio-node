@@ -1,6 +1,11 @@
 import { readFileSync, createReadStream, statSync } from "fs";
+import scdl from "soundcloud-downloader";
 import express, { Application, Request, Response } from "express";
 import { Error } from "./types";
+
+const SOUNDCLOUD_URL =
+  "https://soundcloud.com/maykon-morais-508307443/ei-dev-ep1-design-patterns-obsever";
+const CLIENT_ID = "YxQYlFPNletSMSZ4b8Svv9FTYgbNbM79";
 
 const app: Application = express();
 const port = 3000;
@@ -9,11 +14,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req: Request, res: Response) => {
-  const file = "./data/linkinpark.mp3";
-  const { size } = statSync(file);
-  const highWaterMark = 2;
+  let audioInfo = await scdl.getInfo(SOUNDCLOUD_URL);
 
-  createReadStream(file, { highWaterMark }).pipe(res);
+  let size = 100000000;
+  if (audioInfo.duration) {
+    size = 128 * (audioInfo.duration / 60000);
+  }
+
+  scdl.download(SOUNDCLOUD_URL).then((stream) => stream.pipe(res));
 
   return res.writeHead(200, {
     "Content-Length": size,
