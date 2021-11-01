@@ -4,11 +4,11 @@ import express, { Application, Request, Response } from "express";
 import { Error } from "./types";
 
 const SOUNDCLOUD_URL =
-  "https://soundcloud.com/maykon-morais-508307443/ei-dev-ep1-design-patterns-obsever";
+  "https://soundcloud.com/trapbrasileiroriginal/md-chefe-ft-domlaike-rei-lacoste";
 const CLIENT_ID = "YxQYlFPNletSMSZ4b8Svv9FTYgbNbM79";
 
 const app: Application = express();
-const port = 3000;
+const port = 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
