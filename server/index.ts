@@ -4,7 +4,7 @@ import express, { Application, Request, Response } from "express";
 import { Error } from "./types";
 
 const SOUNDCLOUD_URL =
-  "https://soundcloud.com/trapbrasileiroriginal/md-chefe-ft-domlaike-rei-lacoste";
+  "https://soundcloud.com/maykon-morais-508307443/ei-dev-ep1-design-patterns-obsever";
 const CLIENT_ID = "YxQYlFPNletSMSZ4b8Svv9FTYgbNbM79";
 
 const app: Application = express();
